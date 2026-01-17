@@ -166,8 +166,13 @@ const App = () => {
   };
 
   const fetchWithRetry = async (payload, key) => {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${key}`;
-    //const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${key}`;
+    // Usamos el modelo "Lite" (el más barato de tu lista) y limpiamos la llave
+    //const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key.trim()}`;
+    // CORRECCIÓN: Usa "gemini-1.5-flash"
+    //const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key.trim()}`;
+    // SOLUCIÓN CONFIRMADA
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${key.trim()}`;
+
     let retries = 0;
     const maxRetries = 2;
 
